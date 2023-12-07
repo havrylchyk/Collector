@@ -16,7 +16,6 @@ namespace Assets.Scripts
             {
                 var catValue = cat.Collect();
                 cats += catValue;
-                GameManager.Instance.IncreaseScore();
             }
         }
 
