@@ -16,6 +16,7 @@ namespace Assets.Scripts
     public class PlayerController : MonoBehaviour
     {
         [SerializeField] private int Cats;
+        [SerializeField] private AudioSource audioSource;
         public Action<int> OnCatsAmountcanged;
 
         private void Start()
@@ -41,8 +42,14 @@ namespace Assets.Scripts
             {
                 var catValue = cat.Collect();
                 Cats += catValue;
+
+                if (audioSource != null)
+                {
+                    audioSource.Play();
+                }
+
                 var json = JsonUtility.ToJson(new PlayerData() { Name = "Wizard", cats = Cats });
-                //Debug.Log(json);
+
 
                 var path = Application.persistentDataPath + "/playerData.json";
                 File.WriteAllText(path, json);
